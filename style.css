@@ -1,0 +1,93 @@
+
+/* 整个网页的背景 */
+html {
+    background-color: #f0f4f8;
+}
+
+/* 网页主体 */
+body {
+    max-width: 760px;
+    margin: 50px auto;
+    padding: 40px;
+    background-color: white;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    font-family: "Microsoft YaHei", sans-serif;
+    line-height: 1.8;
+    color: #333333;
+}
+
+/* 一级标题 */
+h1 {
+    color: #2563eb;
+    text-align: center;
+    font-size: 30px;
+}
+
+/* 二级标题 */
+h2 {
+    color: #1e40af;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 8px;
+    margin-top: 28px;
+}
+
+/* 普通段落 */
+p {
+    font-size: 16px;
+}
+
+/* 学习目标列表 */
+li {
+    margin-bottom: 8px;
+}
+
+/* 鼠标悬停在列表文字上 */
+li:hover {
+    color: #2563eb;
+}
+
+/* 按钮样式 */
+.button {
+    display: inline-block;
+    background-color: #2563eb;
+    color: white;
+    padding: 10px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.button:hover {
+    background-color: #1b1fac;
+}
+button {
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+input {
+    width: 65%;
+    padding: 12px;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+#addButton {
+    padding: 12px 18px;
+    margin-left: 5px;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#studyList li {
+    background-color: #f0f4f8;
+    padding: 10px;
+    margin-top: 8px;
+    border-radius: 8px;
+}
