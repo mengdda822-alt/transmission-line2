@@ -1,51 +1,128 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>我的第一个网页</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#101b2d" />
+  <meta name="description" content="输电线路三维教学实验室：铁塔结构、弧垂模拟、基础知识与教学计算。" />
+  <title>输电线路三维教学实验室 V1.0</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
 </head>
 <body>
+  <header class="topbar">
+    <a class="brand" href="./index.html" aria-label="返回首页">
+      <span class="brand-mark">⚡</span>
+      <span><strong>输电线路三维教学实验室</strong><small>TRANSMISSION LINE LEARNING LAB · V1.0</small></span>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="展开导航">☰</button>
+    <nav id="mainNav">
+      <button class="nav-btn active" data-page="tower">三维铁塔</button>
+      <button class="nav-btn" data-page="sag">弧垂模拟</button>
+      <button class="nav-btn" data-page="knowledge">知识课堂</button>
+      <button class="nav-btn" data-page="calculator">教学计算</button>
+      <button class="nav-btn" data-page="quiz">知识测试</button>
+    </nav>
+  </header>
 
-    <h1>你好，欢迎来到我的个人主页！</h1>
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">FIELD KNOWLEDGE · 3D INTERACTIVE LEARNING</p>
+        <h1>把输电线路知识，<span>变成看得见的结构</span></h1>
+        <p class="hero-desc">从铁塔结构到导线弧垂，从基础原理到现场工序，逐步建立自己的输电线路知识库。</p>
+      </div>
+      <div class="hero-chip"><span class="pulse"></span> V1.0 · 本地可运行 · GitHub Pages 可部署</div>
+    </section>
 
-    <h2 id="about">关于我</h2>
-    <p>你好，我正在学习 HTML 和 AI 应用开发。</p>
-    <p>这是我制作的第一个网页。</p>
+    <section class="page active" id="page-tower">
+      <div class="section-heading">
+        <div><p class="eyebrow">MODULE 01</p><h2>三维铁塔结构实验室</h2><p>拖动旋转模型，滚轮或双指缩放，观察输电铁塔的整体结构。</p></div>
+        <span class="tag">教学示意模型</span>
+      </div>
+      <div class="workspace tower-layout">
+        <div class="viewer-card">
+          <div class="viewer-toolbar"><span><i class="status-dot"></i> 3D MODEL / TOWER</span><div><button class="small-btn" id="resetTower">重置视角</button><button class="small-btn" id="wireToggle">隐藏导线</button></div></div>
+          <div id="towerViewer" class="three-viewer"><div class="loading">正在构建三维模型…</div></div>
+          <div class="viewer-hint">鼠标左键拖动：旋转 · 滚轮：缩放 · 右键拖动：平移</div>
+        </div>
+        <aside class="info-panel">
+          <p class="eyebrow">STRUCTURE GUIDE</p><h3>结构部位</h3>
+          <p class="muted">选择下方部位，查看它在铁塔中的作用。</p>
+          <div class="part-list">
+            <button class="part-btn selected" data-part="tower"><b>01</b><span>塔身与塔腿<small>支撑主体结构并将荷载传递至基础</small></span><span>›</span></button>
+            <button class="part-btn" data-part="crossarm"><b>02</b><span>横担<small>支撑绝缘子串及导线布置</small></span><span>›</span></button>
+            <button class="part-btn" data-part="head"><b>03</b><span>塔头<small>布置导线、地线及相关构件</small></span><span>›</span></button>
+            <button class="part-btn" data-part="insulator"><b>04</b><span>绝缘子串<small>承担电气绝缘与机械连接作用</small></span><span>›</span></button>
+            <button class="part-btn" data-part="groundwire"><b>05</b><span>地线与避雷线位置<small>用于线路雷电防护系统布置</small></span><span>›</span></button>
+          </div>
+          <div class="detail-box"><span class="detail-label">部位说明</span><h4 id="partTitle">塔身与塔腿</h4><p id="partText">塔身由主材、斜材和横隔材等构件组成，将导线、地线及风荷载等作用传递至塔脚和基础。实际构造以具体塔型设计图为准。</p></div>
+        </aside>
+      </div>
+    </section>
 
-    <h2>我的学习目标</h2>
-    <ul>
-        <li>掌握 HTML 网页开发</li>
-        <li>学习 CSS 网页美化</li>
-        <li>学习 JavaScript 编程</li>
-        <li>开发属于自己的 AI 应用</li>
-        <li>我爱点点</li>
-    </ul>
+    <section class="page" id="page-sag">
+      <div class="section-heading"><div><p class="eyebrow">MODULE 02</p><h2>导线弧垂模拟</h2><p>通过调整档距与弧垂参数，直观观察导线曲线变化。</p></div><span class="tag">形态模拟 · 非施工放样</span></div>
+      <div class="workspace sag-layout">
+        <div class="viewer-card"><div class="viewer-toolbar"><span><i class="status-dot"></i> 3D MODEL / CONDUCTOR SAG</span><button class="small-btn" id="resetSag">重置参数</button></div><div id="sagViewer" class="three-viewer sag-viewer"><div class="loading">正在构建导线模型…</div></div><div class="viewer-hint">可旋转查看导线曲线；本图为等高悬挂点的教学示意。</div></div>
+        <aside class="info-panel controls-panel">
+          <p class="eyebrow">PARAMETER CONTROL</p><h3>模拟参数</h3>
+          <label class="range-label">档距 L <strong><span id="spanValue">300</span> m</strong></label><input id="spanRange" type="range" min="100" max="600" step="10" value="300" />
+          <label class="range-label">弧垂 f <strong><span id="sagValue">9.0</span> m</strong></label><input id="sagRange" type="range" min="2" max="30" step="0.5" value="9" />
+          <div class="metric-grid"><div><small>档距</small><strong id="spanMetric">300 m</strong></div><div><small>弧垂</small><strong id="sagMetric">9.0 m</strong></div><div><small>弧垂/档距</small><strong id="ratioMetric">3.00%</strong></div></div>
+          <div class="detail-box"><span class="detail-label">观察要点</span><p>在其他条件不变的简化示意中，档距增大或弧垂增大，导线曲线会更明显地下垂。真实弧垂还受温度、荷载、张力、高差、导线特性等因素影响。</p></div>
+        </aside>
+      </div>
+    </section>
 
-    <h2>我的座右铭</h2>
-    <p>每天进步一点点，坚持创造自己的作品！</p>
-    <button class="button" id="greetButton">
-    点击认识我
-</button>
+    <section class="page" id="page-knowledge">
+      <div class="section-heading"><div><p class="eyebrow">MODULE 03</p><h2>输电线路知识课堂</h2><p>从施工现场常见术语开始，逐步建立系统知识框架。</p></div><span class="tag">基础知识</span></div>
+      <div class="knowledge-grid">
+        <article class="knowledge-card"><span class="card-number">01 / LINE BASICS</span><h3>档距</h3><p>相邻两基杆塔（或两支撑点）之间沿线路方向的水平距离，工程资料中需注意档距、水平档距和垂直档距等概念的区别。</p><div class="keyword">关键词：杆塔 · 距离 · 线路</div></article>
+        <article class="knowledge-card"><span class="card-number">02 / CONDUCTOR</span><h3>弧垂</h3><p>在给定观测条件下，导线悬挂点连线与导线最低点之间的竖向距离。两悬挂点等高时，定义更直观。</p><div class="keyword">关键词：最低点 · 挂点连线</div></article>
+        <article class="knowledge-card"><span class="card-number">03 / MECHANICS</span><h3>张力</h3><p>导线在架设和运行状态下承受的拉力。张力与弧垂相互关联，同时受温度、荷载和导线状态影响。</p><div class="keyword">关键词：拉力 · 荷载 · 温度</div></article>
+        <article class="knowledge-card"><span class="card-number">04 / FITTINGS</span><h3>金具</h3><p>用于连接、固定、悬挂、保护导线或绝缘子串的金属附件。不同金具承担的机械和电气功能不同。</p><div class="keyword">关键词：连接 · 固定 · 保护</div></article>
+        <article class="knowledge-card"><span class="card-number">05 / INSULATION</span><h3>绝缘子</h3><p>用于支撑导线并实现带电部分与杆塔之间电气绝缘，具体型式和配置由电压等级、荷载及设计要求确定。</p><div class="keyword">关键词：绝缘 · 支撑 · 串型</div></article>
+        <article class="knowledge-card"><span class="card-number">06 / CONSTRUCTION</span><h3>附件安装</h3><p>架线后按设计及施工要求安装线夹、防振锤、间隔棒、跳线等附件。安装位置、方向和紧固要求应核对施工文件。</p><div class="keyword">关键词：线夹 · 防振 · 间隔棒</div></article>
+      </div>
+    </section>
 
-<p id="message">点击上面的按钮试试看！</p>
-    
+    <section class="page" id="page-calculator">
+      <div class="section-heading"><div><p class="eyebrow">MODULE 04</p><h2>弧垂教学计算器</h2><p>输入单位长度荷载、档距和水平张力，理解简化公式中各参数的影响。</p></div><span class="tag warning-tag">仅限教学估算</span></div>
+      <div class="calculator-card">
+        <div class="formula">f ≈ <span>qL²</span> / <span>8H</span></div>
+        <p class="muted">小弧垂、等高悬挂点、均布荷载等简化条件下的近似公式。</p>
+        <div class="input-grid">
+          <label>单位长度荷载 q（N/m）<input type="number" id="loadInput" value="12" min="0.01" step="0.1"></label>
+          <label>档距 L（m）<input type="number" id="lengthInput" value="300" min="1" step="1"></label>
+          <label>水平张力 H（N）<input type="number" id="tensionInput" value="15000" min="1" step="100"></label>
+        </div>
+        <button class="primary-btn" id="calculateBtn">计算教学示例</button>
+        <div class="result-panel"><small>简化公式计算结果</small><strong id="calcResult">9.00 m</strong><p id="calcExplain">将 q、L、H 代入公式，得到教学估算值。</p></div>
+        <div class="notice"><strong>重要提醒</strong><p>本工具不包含温度变化、覆冰、风荷载组合、高差、代表档距、导线应力状态及设计控制条件，不能用于正式紧线、弧垂观测或施工验收。现场必须以经批准的设计文件、弧垂表、施工方案及适用规程为准。</p></div>
+      </div>
+    </section>
 
-<h2>我的学习记录</h2>
+    <section class="page" id="page-quiz">
+      <div class="section-heading"><div><p class="eyebrow">MODULE 05</p><h2>知识测试</h2><p>用几个基础问题检查你是否掌握了本版核心概念。</p></div><span class="tag">即时反馈</span></div>
+      <div class="quiz-card">
+        <div class="quiz-progress"><span id="quizStep">QUESTION 1 / 4</span><span id="quizScore">得分：0</span></div>
+        <h3 id="questionText">弧垂通常指什么？</h3>
+        <div id="answerOptions" class="answer-options"></div>
+        <p id="quizFeedback" class="quiz-feedback">选择一个答案后查看解析。</p>
+        <div class="quiz-actions"><button class="small-btn" id="nextQuestion" disabled>下一题 →</button><button class="text-btn" id="restartQuiz">重新测试</button></div>
+      </div>
+    </section>
+  </main>
 
-<input
-    type="text"
-    id="studyInput"
-    placeholder="请输入今天学到的内容"
->
-
-<button id="addButton">添加记录</button>
-<p>已经记录：<span id="recordCount">0</span> 条</p>
-<ul id="studyList">
-</ul>
-
-<script src="script.js"></script>
+  <footer><span>输电线路三维教学实验室 V1.0</span><span>学习与辅助理解工具 · 不替代正式设计及现场安全管理</span></footer>
+  <script type="module" src="./app.js"></script>
 </body>
 </html>
